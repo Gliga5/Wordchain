@@ -1,0 +1,35 @@
+html,
+body {
+    height: 95%;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    font-family: Verdana, sans-serif;
+}
+
+#timer {
+    top: 2vh;
+    width: 100vw;
+    font-size: 2vw;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+}
+
+#worder {
+    text-align: right;
+    direction: rtl;
+    width: 52.5vw;
+
+    font-size: 3vw;
+    font-weight: 600;
+    letter-spacing: 1vw;
+    overflow: hidden;
+    text-overflow: clip;
+
+    align-self: center;
+}

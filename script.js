@@ -1,6 +1,7 @@
 var timer = -1;
 var timerTop = 9.9;
 var timerInterval;
+var text = "";
 
 var checker = 0;
 
@@ -45,12 +46,27 @@ function logic(event) {
     }
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
-        span.textContent += event.key.toUpperCase();
+        if (text.length == 0 && event.key.toUpperCase() != span.textContent) {
+            text += span.textContent+event.key.toUpperCase();
+        }else {
+            text += event.key.toUpperCase();
+        }
+
+        if (span.textContent != text && text.length > 1) {
+            span.textContent = text;
+        }
     }
 
-    if (event.keyCode == 8 && span.textContent.length > 1) {
-        span.textContent = span.textContent.slice(0, span.textContent.length - 1);
+    if (event.keyCode == 8 && text.length > 0) {
+        text = text.slice(0, text.length - 1);
+        
+        if (text.length > 0) {
+            span.textContent = text;
+        }
+
     }
+
+    console.log(text);
 
     if (event.keyCode == 13) {
         if (!usedWords.includes(span.textContent.toLowerCase())) {
@@ -59,6 +75,7 @@ function logic(event) {
 
                 spanOld.textContent += span.textContent.slice(0, span.textContent.length - 1);
                 span.textContent = span.textContent[span.textContent.length - 1];
+                text = "";
 
                 clearInterval(timerInterval);
 

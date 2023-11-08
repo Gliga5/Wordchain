@@ -109560,5 +109560,3 @@ var words = [
     "zymurgy",
     "zyzzyva",
     "zyzzyvas"];
-
-var usedWords = ["gliga"];

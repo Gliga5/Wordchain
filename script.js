@@ -4,20 +4,7 @@ var timerInterval;
 var text = "";
 
 var checker = 0;
-
-function check(el) {
-    var curOverf = el.style.overflow;
-
-    if (!curOverf || curOverf === "visible")
-        el.style.overflow = "hidden";
-
-    var isOverflowing = el.clientWidth < el.scrollWidth
-        || el.clientHeight < el.scrollHeight;
-
-    el.style.overflow = curOverf;
-
-    return isOverflowing;
-}
+var usedWords = ["gliga"];
 
 function logic(event) {
     var timerDiv = document.getElementById('timer');
@@ -32,7 +19,7 @@ function logic(event) {
             timer -= 0.1;
 
             if (timer >= 0 && timer < 0.1) {
-                timerDiv.textContent = "Words: " + usedWords.length;
+                timerDiv.textContent = "Score: " + (spanOld.textContent.length + 1);
 
                 span.style.color = "red";
                 document.removeEventListener('keydown', logic);
@@ -47,8 +34,8 @@ function logic(event) {
 
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         if (text.length == 0 && event.key.toUpperCase() != span.textContent) {
-            text += span.textContent+event.key.toUpperCase();
-        }else {
+            text += span.textContent + event.key.toUpperCase();
+        } else {
             text += event.key.toUpperCase();
         }
 
@@ -59,14 +46,12 @@ function logic(event) {
 
     if (event.keyCode == 8 && text.length > 0) {
         text = text.slice(0, text.length - 1);
-        
+
         if (text.length > 0) {
             span.textContent = text;
         }
 
     }
-
-    console.log(text);
 
     if (event.keyCode == 13) {
         if (!usedWords.includes(span.textContent.toLowerCase())) {
@@ -85,7 +70,7 @@ function logic(event) {
                     timer -= 0.1;
 
                     if (timer >= 0 && timer < 0.1) {
-                        timerDiv.textContent = "Words: " + usedWords.length;
+                        timerDiv.textContent = "Score: " + (spanOld.textContent.length + 1);
 
                         span.style.color = "red";
                         document.removeEventListener('keydown', logic);
@@ -102,7 +87,7 @@ function logic(event) {
                 }, 100);
             }
         } else {
-            timerDiv.textContent = "Words: " + usedWords.length;
+            timerDiv.textContent = "Score: " + (spanOld.textContent.length + 1);
 
             span.style.color = "red";
             document.removeEventListener('keydown', logic);
